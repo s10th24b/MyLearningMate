@@ -12,13 +12,15 @@ import kr.s10th24b.app.mylearningmate.databinding.ActivityMainBinding
 import kr.s10th24b.app.mylearningmate.viewmodel.MainViewModel
 
 class MainActivity : RxAppCompatActivity() {
+    private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+    private val viewModel by lazy { ViewModelProvider(this)[MainViewModel::class.java] }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        binding.viewModel = viewModel
-        binding.lifecycleOwner = this
+        binding.apply {
+            viewModel = this@MainActivity.viewModel
+            lifecycleOwner = this@MainActivity
+        }
     }
 }

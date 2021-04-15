@@ -15,6 +15,7 @@ This is the Learning App
 - min SDK : 23
 - Target SDK : 30  
 - Implement : RxAndroid, RxJava, RxLifeCycle, Glide
+- Keep on : MVVM Design, Single Activity
 
 ## Primary To-do List 
 - [ ] Design Application Structures & Design

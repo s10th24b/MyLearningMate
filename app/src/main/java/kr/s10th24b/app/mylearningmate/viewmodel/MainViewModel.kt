@@ -8,7 +8,7 @@ import io.reactivex.rxjava3.subjects.PublishSubject
 import splitties.toast.toast
 
 class MainViewModel : ViewModel() {
-    val count = MutableLiveData<Int>(0)
+    val count = MutableLiveData(0)
     fun increase() {
         count.value?.let{
             count.value = it+1
