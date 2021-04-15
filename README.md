@@ -17,6 +17,7 @@ This is the Learning App
 - Implement : RxAndroid, RxJava, RxLifeCycle, Glide
 
 ## Primary To-do List 
+- [ ] Design Application Structures & Design
 - [ ] Complete Activity Layout 
 
 ----------------
