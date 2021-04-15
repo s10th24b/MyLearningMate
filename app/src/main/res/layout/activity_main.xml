@@ -15,10 +15,11 @@
 
     <TextView
         android:id="@+id/countText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="으하하"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="@{viewModel.count.toString()}"
         android:textColor="#000000"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -30,6 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="52dp"
         android:layout_marginBottom="40dp"
+        android:onClick="@{() -> viewModel.increase()}"
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,6 +44,7 @@
         android:layout_marginStart="44dp"
         android:layout_marginBottom="32dp"
         android:clickable="true"
+        android:onClick="@{() -> viewModel.decrease()}"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_baseline_remove_24" />

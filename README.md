@@ -1,6 +1,7 @@
 # My Learning Mate
 
-Learning Mate :couplekiss:
+Learning Mate 🎓🏃‍♂
+
 
 `Started at 21.04.15`
 
