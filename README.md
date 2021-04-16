@@ -22,6 +22,7 @@ This is the Learning App
 - [X] Add Splash (done at 21.04.15)
 - [ ] Complete Activity Layout 
 - [ ] Make Room Structure
+- [ ] User Set Photo From Gallery
 
 ----------------
 ### Secondary To-do List 
