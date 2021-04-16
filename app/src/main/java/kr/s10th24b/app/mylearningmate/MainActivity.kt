@@ -3,6 +3,7 @@ package kr.s10th24b.app.mylearningmate
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
 import com.jakewharton.rxbinding4.view.clicks
 import com.trello.rxlifecycle4.android.ActivityEvent
 import com.trello.rxlifecycle4.components.support.RxAppCompatActivity
@@ -22,5 +23,7 @@ class MainActivity : RxAppCompatActivity() {
             viewModel = this@MainActivity.viewModel
             lifecycleOwner = this@MainActivity
         }
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.main_nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
     }
 }

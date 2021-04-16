@@ -14,12 +14,14 @@ This is the Learning App
 ### Specification
 - min SDK : 23
 - Target SDK : 30  
-- Implement : RxAndroid, RxJava, RxLifeCycle, Glide
-- Keep on : MVVM Design, Single Activity
+- Implement : RxAndroid, RxJava, RxLifeCycle, Glide, Room
+- Keep on : AAC ViewModel Design, Single Activity, Navigation
 
 ## Primary To-do List 
 - [ ] Design Application Structures & Design
+- [ ] Add Splash Screen
 - [ ] Complete Activity Layout 
+- [ ] Make Room Structure
 
 ----------------
 ### Secondary To-do List 

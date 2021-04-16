@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="kr.s10th24b.app.mylearningmate.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_mainFragment_to_stateFragment"
+            app:destination="@id/stateFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_learningMateFragment"
+            app:destination="@id/learningMateFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/stateFragment"
+        android:name="kr.s10th24b.app.mylearningmate.StateFragment"
+        android:label="fragment_state"
+        tools:layout="@layout/fragment_state" />
+    <fragment
+        android:id="@+id/learningMateFragment"
+        android:name="kr.s10th24b.app.mylearningmate.LearningMateFragment"
+        android:label="fragment_learning_mate"
+        tools:layout="@layout/fragment_learning_mate" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="kr.s10th24b.app.mylearningmate.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+</navigation>

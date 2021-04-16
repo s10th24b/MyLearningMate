@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:icon="@drawable/ic_baseline_format_list_bulleted_24"
+        android:title="State" />
+    <item
+        android:icon="@drawable/ic_baseline_directions_run_24"
+        android:title="LearningMate" />
+    <item
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="Profile" />
+</menu>
