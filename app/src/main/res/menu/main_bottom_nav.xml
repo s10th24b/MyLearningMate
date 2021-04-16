@@ -2,12 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/stateFragment"
         android:icon="@drawable/ic_baseline_format_list_bulleted_24"
         android:title="State" />
     <item
+        android:id="@+id/learningMateFragment"
         android:icon="@drawable/ic_baseline_directions_run_24"
         android:title="LearningMate" />
     <item
+        android:id="@+id/profileFragment"
         android:icon="@drawable/ic_baseline_person_24"
         android:title="Profile" />
 </menu>
