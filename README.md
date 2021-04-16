@@ -19,7 +19,7 @@ This is the Learning App
 
 ## Primary To-do List 
 - [ ] Design Application Structures & Design
-- [ ] Add Splash Screen
+- [X] Add Splash (done at 21.04.15)
 - [ ] Complete Activity Layout 
 - [ ] Make Room Structure
 

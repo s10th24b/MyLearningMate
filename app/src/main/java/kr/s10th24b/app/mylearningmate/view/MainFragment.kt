@@ -5,14 +5,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import kr.s10th24b.app.mylearningmate.databinding.FragmentMainBinding
+import kr.s10th24b.app.mylearningmate.viewmodel.ProfileViewModel
 
 class MainFragment : Fragment() {
-    private val binding: FragmentMainBinding by lazy { FragmentMainBinding.inflate(layoutInflater) }
+    private val binding by lazy { FragmentMainBinding.inflate(layoutInflater) }
+//    private val viewModel by lazy { ViewModelProvider(this)[MainViewModel::class.java]}
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
+        }
+        binding.apply {
+//            viewModel = this@MainFragment.viewModel
+//            lifecycleOwner = this@MainFragment
         }
     }
 
@@ -21,9 +29,6 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding.apply {
-//            viewLifecycleOwner = this@MainFragment
-        }
 //        binding.button2.setOnClickListener {
 //            val action = MainFragmentDirections.actionMainFragmentToStateFragment()
 //            requireView().findNavController().navigate(action)
