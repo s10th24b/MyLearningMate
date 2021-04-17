@@ -46,11 +46,10 @@
 
     <ImageView
         android:id="@+id/photoImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/splash"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:scaleType="centerCrop"
-        app:imageUrl="@{viewModel.user.photoUrl}"
+        android:src="@drawable/splash"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toTopOf="@+id/guideline3"
         tools:src="@tools:sample/avatars" />
@@ -66,7 +65,7 @@
         app:layout_constraintStart_toEndOf="@+id/photoImage" />
 
     <TextView
-        android:id="@+id/nameText2"
+        android:id="@+id/nameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"

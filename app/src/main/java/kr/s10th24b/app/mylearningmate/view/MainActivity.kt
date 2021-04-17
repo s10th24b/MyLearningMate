@@ -8,10 +8,14 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupWithNavController
 import com.trello.rxlifecycle4.components.support.RxAppCompatActivity
+import dagger.hilt.EntryPoint
+import dagger.hilt.android.AndroidEntryPoint
 import kr.s10th24b.app.mylearningmate.R
 import kr.s10th24b.app.mylearningmate.databinding.ActivityMainBinding
+import kr.s10th24b.app.mylearningmate.model.DataRepository
 import kr.s10th24b.app.mylearningmate.viewmodel.MainViewModel
 
+@AndroidEntryPoint
 class MainActivity : RxAppCompatActivity() {
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private val viewModel by lazy { ViewModelProvider(this)[MainViewModel::class.java] }

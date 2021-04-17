@@ -8,9 +8,11 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
+import dagger.hilt.android.AndroidEntryPoint
 import kr.s10th24b.app.mylearningmate.databinding.FragmentMainBinding
 import kr.s10th24b.app.mylearningmate.viewmodel.ProfileViewModel
 
+@AndroidEntryPoint
 class MainFragment : Fragment() {
     private val binding by lazy { FragmentMainBinding.inflate(layoutInflater) }
 //    private val viewModel by lazy { ViewModelProvider(this)[MainViewModel::class.java]}
@@ -20,7 +22,7 @@ class MainFragment : Fragment() {
         }
         binding.apply {
 //            viewModel = this@MainFragment.viewModel
-//            lifecycleOwner = this@MainFragment
+//            lifecycleOwner = viewLifecycleOwner
         }
     }
 
