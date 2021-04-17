@@ -21,7 +21,10 @@ This is the Learning App
 - [ ] Design Application Structures & Design
 - [X] Add Splash (done at 21.04.15)
 - [X] Introduce Dagger Hilt (done at 21.04.17)
-- [ ] Complete Activity Layout 
+- [ ] Complete UI Layout
+- [ ] Complete State View Design
+- [ ] Complete LearningMate View Design
+- [ ] Complete Profile View Design
 - [X] Make Room Structure (done at 21.04.17)
 - [ ] User Set Photo From Gallery
 
