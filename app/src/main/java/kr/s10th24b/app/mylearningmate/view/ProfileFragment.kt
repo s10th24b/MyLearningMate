@@ -13,6 +13,7 @@ import io.reactivex.rxjava3.core.Single
 import kr.s10th24b.app.mylearningmate.databinding.FragmentProfileBinding
 import kr.s10th24b.app.mylearningmate.viewmodel.ProfileViewModel
 import kr.s10th24b.app.mylearningmate.viewmodel.StateViewModel
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class ProfileFragment : RxFragment() {

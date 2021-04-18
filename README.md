@@ -14,19 +14,20 @@ This is the Learning App
 ### Specification
 - min SDK : 23
 - Target SDK : 30  
-- Implement : RxAndroid, RxJava, RxLifeCycle, Glide, Room, Dagger Hilt
-- Keep on : AAC ViewModel Design, Single Activity, Navigation
+- Implement : RxAndroid, RxJava, RxLifeCycle, Glide, Navigation, Room, Dagger Hilt
+- Keep on : AAC ViewModel, Single Activity
 
 ## Primary To-do List 
 - [ ] Design Application Structures & Design
 - [X] Add Splash (done at 21.04.15)
 - [X] Introduce Dagger Hilt (done at 21.04.17)
-- [ ] Complete UI Layout
+- [ ] Make Drawer Layout
 - [ ] Complete State View Design
 - [ ] Complete LearningMate View Design
 - [ ] Complete Profile View Design
 - [X] Make Room Structure (done at 21.04.17)
 - [ ] User Set Photo From Gallery
+- [ ] Background Service and Lock Screen Service
 
 ----------------
 ### Secondary To-do List 

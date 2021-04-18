@@ -2,38 +2,62 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="viewModel"
             type="kr.s10th24b.app.mylearningmate.viewmodel.MainViewModel" />
-
     </data>
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.MainActivity">
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/mainBottomNav"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:labelVisibilityMode="selected"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/main_bottom_nav" />
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/main_nav_host_fragment"
-        android:name="androidx.navigation.fragment.NavHostFragment"
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/mainDrawerLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:defaultNavHost="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:navGraph="@navigation/nav_graph">
+        android:fitsSystemWindows="true">
 
-    </androidx.fragment.app.FragmentContainerView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".view.MainActivity">
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/mainBottomNav"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelVisibilityMode="selected"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:menu="@menu/main_bottom_nav" />
+
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/mainToolbar"
+                android:layout_width="0dp"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/mainNavHostFragment"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:defaultNavHost="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:navGraph="@navigation/nav_graph" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/mainNavView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true" />
+    </androidx.drawerlayout.widget.DrawerLayout>
 </layout>

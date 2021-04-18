@@ -17,13 +17,14 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.observers.DisposableObserver
 import io.reactivex.rxjava3.observers.DisposableSingleObserver
 import io.reactivex.rxjava3.schedulers.Schedulers
+import kr.s10th24b.app.mylearningmate.model.DataRepository
 import kr.s10th24b.app.mylearningmate.model.User
 import kr.s10th24b.app.mylearningmate.model.UserRepository
 import javax.inject.Inject
 
 @HiltViewModel
 class ProfileViewModel @Inject internal constructor(
-    private val userRepository: UserRepository
+    private val dataRepository: DataRepository
 ) : ViewModel() {
     val user = MutableLiveData<User>()
     private val mCompositeDatabase by lazy { CompositeDisposable() }
@@ -43,7 +44,7 @@ class ProfileViewModel @Inject internal constructor(
 
     fun getUser(id: String) {
         mCompositeDatabase.add(
-            userRepository.getUser(id)
+            dataRepository.getUserRepository().getUser(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableSingleObserver<User>() {
@@ -55,12 +56,12 @@ class ProfileViewModel @Inject internal constructor(
                         error("onError in getUser in ProfileViewModel")
                     }
                 })
-                )
+        )
     }
 
     fun getAllUser() {
         mCompositeDatabase.add(
-            userRepository.getAllUser()
+            dataRepository.getUserRepository().getAllUser()
                 .subscribeWith(object : DisposableObserver<List<User>>() {
                     override fun onNext(t: List<User>?) {
                     }

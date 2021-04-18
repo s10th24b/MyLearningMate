@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.05"
+        app:layout_constraintGuide_percent="0.06"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -59,7 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
-        android:text="affiliation"
+        android:text="@{viewModel.user.affiliation}"
         app:layout_constraintBottom_toBottomOf="@+id/photoImage"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintStart_toEndOf="@+id/photoImage" />
@@ -69,7 +69,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="name"
+        android:text="@{viewModel.user.name}"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintStart_toEndOf="@+id/photoImage"
         app:layout_constraintTop_toTopOf="@+id/guideline3" />

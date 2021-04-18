@@ -1,12 +1,10 @@
 package kr.s10th24b.app.mylearningmate.view
 
 import android.os.Bundle
+import androidx.appcompat.app.ActionBar
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.NavigationUI
-import androidx.navigation.ui.onNavDestinationSelected
-import androidx.navigation.ui.setupWithNavController
+import androidx.navigation.ui.*
 import com.trello.rxlifecycle4.components.support.RxAppCompatActivity
 import dagger.hilt.EntryPoint
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,8 +27,16 @@ class MainActivity : RxAppCompatActivity() {
             lifecycleOwner = this@MainActivity
         }
         val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.main_nav_host_fragment) as NavHostFragment
+            supportFragmentManager.findFragmentById(R.id.mainNavHostFragment) as NavHostFragment
         val navController = navHostFragment.navController
         binding.mainBottomNav.setupWithNavController(navController)
+
+//        val appBarConfiguration = AppBarConfiguration(navController.graph)
+        val appBarConfiguration = AppBarConfiguration(setOf(R.id.stateFragment,R.id.profileFragment,R.id.learningMateFragment))
+        binding.mainToolbar.setupWithNavController(navController,appBarConfiguration)
+
+        val appBarConfiguration2 = AppBarConfiguration(navController.graph, binding.mainDrawerLayout)
+        binding.mainNavView.setupWithNavController(navController)
+//        setupActionBarWithNavController(navController,appBarConfiguration)
     }
 }
