@@ -31,7 +31,10 @@ class LMRecyclerViewAdapter :
         holder.bind(getItem(position))
         // remove button
         holder.binding.clearButton.setOnClickListener {
-            removeButtonObservable.onNext(currentList[position].id)
+            Log.d("KHJ","currentList[$position]")
+            // 삽질 엄청 했다. recyclerView에서 Item을 없앨 때는! 꼭! adapterPosition을 이용하자!
+//            removeButtonObservable.onNext(getItem(position).id)
+            removeButtonObservable.onNext(getItem(holder.adapterPosition).id)
         }
     }
 
