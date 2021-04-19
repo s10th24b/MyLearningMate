@@ -14,6 +14,7 @@ import com.trello.rxlifecycle4.android.FragmentEvent
 import com.trello.rxlifecycle4.components.support.RxFragment
 import com.trello.rxlifecycle4.kotlin.bindUntilEvent
 import dagger.hilt.android.AndroidEntryPoint
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import kr.s10th24b.app.mylearningmate.adapters.LMRecyclerViewAdapter
 import kr.s10th24b.app.mylearningmate.databinding.FragmentLearningMateBinding
 import kr.s10th24b.app.mylearningmate.databinding.FragmentMainBinding
