@@ -35,7 +35,7 @@
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/mainToolbar"
                 android:layout_width="0dp"
-                android:layout_height="?attr/actionBarSize"
+                android:layout_height="wrap_content"
                 android:background="?attr/colorPrimary"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -46,11 +46,12 @@
                 android:id="@+id/mainNavHostFragment"
                 android:name="androidx.navigation.fragment.NavHostFragment"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 app:defaultNavHost="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mainToolbar"
+                app:layout_constraintBottom_toTopOf="@id/mainBottomNav"
                 app:navGraph="@navigation/nav_graph" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -58,6 +59,10 @@
             android:id="@+id/mainNavView"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:fitsSystemWindows="true" />
+            android:layout_gravity="start"
+            android:fitsSystemWindows="true"
+            app:menu="@menu/main_bottom_nav"
+            app:headerLayout="@layout/header_navigation_drawer"
+            />
     </androidx.drawerlayout.widget.DrawerLayout>
 </layout>

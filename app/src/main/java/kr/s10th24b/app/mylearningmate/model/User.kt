@@ -8,6 +8,8 @@ import java.io.Serializable
 @Entity (tableName = "users")
 class User : BaseEntity(), Serializable{
     @ColumnInfo
+    var userId = ""
+    @ColumnInfo
     var name = ""
     @ColumnInfo
     var photoUrl = ""

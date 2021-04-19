@@ -21,7 +21,7 @@ This is the Learning App
 - [ ] Design Application Structures & Design
 - [X] Add Splash (done at 21.04.15)
 - [X] Introduce Dagger Hilt (done at 21.04.17)
-- [ ] Make Drawer Layout
+- [X] Make Drawer Layout (done at 21.04.19)
 - [ ] Complete State View Design
 - [ ] Complete LearningMate View Design
 - [ ] Complete Profile View Design

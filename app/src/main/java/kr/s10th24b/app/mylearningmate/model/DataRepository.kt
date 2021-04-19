@@ -11,8 +11,10 @@ import javax.inject.Singleton
 
 @Singleton
 class DataRepository @Inject internal constructor(
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+    private val taskRepository: TaskRepository
 ) {
     fun getUserRepository() = userRepository
+    fun getTaskRepository() = taskRepository
 
 }

@@ -18,7 +18,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class ProfileFragment : RxFragment() {
     private val binding by lazy { FragmentProfileBinding.inflate(layoutInflater) }
-    val viewModel: ProfileViewModel by viewModels()
+    private val viewModel: ProfileViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -7,6 +7,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import kr.s10th24b.app.mylearningmate.model.AppDatabase
+import kr.s10th24b.app.mylearningmate.model.TaskDao
 import kr.s10th24b.app.mylearningmate.model.UserDao
 import javax.inject.Singleton
 
@@ -23,5 +24,10 @@ class DatabaseModule {
     @Provides
     fun provideUserDao(appDatabase: AppDatabase): UserDao {
         return appDatabase.userDao()
+    }
+
+    @Provides
+    fun provideTaskDao(appDatabase: AppDatabase): TaskDao {
+        return appDatabase.taskDao()
     }
 }

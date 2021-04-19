@@ -31,7 +31,7 @@ class ProfileViewModel @Inject internal constructor(
 
     init {
         val user = User()
-        user.id = "allen246"
+        user.userId = "allen246"
         user.name = "KHJ"
         user.affiliation = "Yonsei Univ."
         user.photoUrl = "@drawable/splash"

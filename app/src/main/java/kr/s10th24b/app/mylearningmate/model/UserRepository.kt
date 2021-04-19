@@ -16,4 +16,13 @@ class UserRepository @Inject internal constructor(
     fun getAllUser(): Observable<List<User>> {
         return userDao.getAll()
     }
+    fun addUser(user: User) {
+        userDao.insert(user)
+    }
+    fun updateUser(user: User) {
+        userDao.update(user)
+    }
+    fun deleteUser(user: User) {
+        userDao.delete(user)
+    }
 }

@@ -5,6 +5,6 @@ import androidx.room.PrimaryKey
 import java.util.*
 
 open class BaseEntity {
-    @PrimaryKey @ColumnInfo var id: String = ""
+    @PrimaryKey(autoGenerate = true) @ColumnInfo var id: Long? = null
     @ColumnInfo var createDate:Long? = null
 }

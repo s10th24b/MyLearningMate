@@ -1,6 +1,7 @@
 package kr.s10th24b.app.mylearningmate.view
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBar
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
@@ -16,7 +17,7 @@ import kr.s10th24b.app.mylearningmate.viewmodel.MainViewModel
 @AndroidEntryPoint
 class MainActivity : RxAppCompatActivity() {
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
-    private val viewModel by lazy { ViewModelProvider(this)[MainViewModel::class.java] }
+    private val viewModel: MainViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_MyLearningMate)
         super.onCreate(savedInstanceState)
@@ -31,11 +32,9 @@ class MainActivity : RxAppCompatActivity() {
         val navController = navHostFragment.navController
         binding.mainBottomNav.setupWithNavController(navController)
 
-//        val appBarConfiguration = AppBarConfiguration(navController.graph)
-        val appBarConfiguration = AppBarConfiguration(setOf(R.id.stateFragment,R.id.profileFragment,R.id.learningMateFragment))
+        val appBarConfiguration = AppBarConfiguration(setOf(R.id.stateFragment,R.id.profileFragment,R.id.learningMateFragment), binding.mainDrawerLayout)
+//        val appBarConfiguration = AppBarConfiguration(navController.graph, binding.mainDrawerLayout)
         binding.mainToolbar.setupWithNavController(navController,appBarConfiguration)
-
-        val appBarConfiguration2 = AppBarConfiguration(navController.graph, binding.mainDrawerLayout)
         binding.mainNavView.setupWithNavController(navController)
 //        setupActionBarWithNavController(navController,appBarConfiguration)
     }
