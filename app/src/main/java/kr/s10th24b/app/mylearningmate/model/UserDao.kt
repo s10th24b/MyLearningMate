@@ -12,5 +12,5 @@ interface UserDao : BaseDao<User> {
     abstract fun getAll(): Observable<List<User>>
 
     @Query("select * from users where id=:id")
-    abstract fun getUser(id: String): Single<User>
+    abstract fun getUser(id: Long): Single<User>
 }

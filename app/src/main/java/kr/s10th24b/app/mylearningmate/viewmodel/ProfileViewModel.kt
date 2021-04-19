@@ -42,7 +42,7 @@ class ProfileViewModel @Inject internal constructor(
         this.user.value = user
     }
 
-    fun getUser(id: String) {
+    fun getUser(id: Long) {
         mCompositeDatabase.add(
             dataRepository.getUserRepository().getUser(id)
                 .subscribeOn(Schedulers.io())

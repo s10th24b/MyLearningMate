@@ -7,8 +7,10 @@ import com.google.android.play.core.internal.t
 import com.trello.rxlifecycle4.kotlin.bindUntilEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.CompletableObserver
 import io.reactivex.rxjava3.core.Observer
+import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.observers.DisposableCompletableObserver
@@ -60,12 +62,30 @@ class LearningMateViewModel @Inject internal constructor(
                 }
 
                 override fun onComplete() {
-                    error("deleteTask() onComplete")
+                    Log.d("KHJ","deleteTask() onComplete")
 
                 }
 
                 override fun onError(e: Throwable?) {
                     error("Error in deleteTask()")
+                }
+            })
+    }
+
+    fun deleteTaskById(id: Long) {
+        dataRepository.getTaskRepository().deleteTaskById(id)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeWith(object : CompletableObserver {
+                override fun onSubscribe(d: Disposable?) {
+                }
+
+                override fun onComplete() {
+                    Log.d("KHJ","deleteTaskById() onComplete")
+                }
+
+                override fun onError(e: Throwable?) {
+                    error("Error in deleteTaskById(id)")
                 }
             })
     }
@@ -88,6 +108,19 @@ class LearningMateViewModel @Inject internal constructor(
             })
     }
 
+    fun getTask(id: Long) {
+        dataRepository.getTaskRepository().getTask(id)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeWith(object : DisposableSingleObserver<Task>() {
+                override fun onSuccess(t: Task?) {
+                }
+
+                override fun onError(e: Throwable?) {
+                }
+            })
+    }
+
     fun getAllTask() {
         dataRepository.getTaskRepository().getAllTask()
             .subscribeOn(Schedulers.io())
@@ -98,7 +131,7 @@ class LearningMateViewModel @Inject internal constructor(
                 }
 
                 override fun onNext(t: List<Task>?) {
-                    t?.let{
+                    t?.let {
                         taskList.value = it.toList()
                     }
                     Log.d("KHJ", "getAllTask() onNext $t")

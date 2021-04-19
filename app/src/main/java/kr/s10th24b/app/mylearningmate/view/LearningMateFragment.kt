@@ -63,8 +63,8 @@ class LearningMateFragment : RxFragment() {
         adapter.removeButtonObservable
             .bindUntilEvent(this, FragmentEvent.DESTROY_VIEW)
             .subscribe {
-                toast(it)
-                viewModel.deleteTask(task)
+                toast(it.toString())
+                viewModel.deleteTaskById(it)
             }
 
         return binding.root

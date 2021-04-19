@@ -20,7 +20,7 @@ import javax.inject.Singleton
 class LMRecyclerViewAdapter :
     ListAdapter<Task, LMRecyclerViewAdapter.LMRecyclerViewHolder>(TaskDiffUtilCallback()) {
     private val mCompositeDisposable: CompositeDisposable by lazy{CompositeDisposable()}
-    val removeButtonObservable = PublishSubject.create<String>()
+    val removeButtonObservable = PublishSubject.create<Long>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LMRecyclerViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.learning_mate_card_view, parent, false)
@@ -31,7 +31,7 @@ class LMRecyclerViewAdapter :
         holder.bind(getItem(position))
         // remove button
         holder.binding.clearButton.setOnClickListener {
-            removeButtonObservable.onNext(getItem(position).id.toString())
+            removeButtonObservable.onNext(currentList[position].id)
         }
     }
 

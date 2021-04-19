@@ -9,9 +9,10 @@ import javax.inject.Singleton
 class TaskRepository @Inject internal constructor(
     private val taskDao: TaskDao
 ) {
-    fun getTask(id: String): Single<Task> = taskDao.getTask(id)
+    fun getTask(id: Long): Single<Task> = taskDao.getTask(id)
     fun getAllTask(): Observable<List<Task>> = taskDao.getAll()
     fun insertTask(task: Task) = taskDao.insert(task)
     fun updateTask(task: Task) = taskDao.update(task)
     fun deleteTask(task: Task) = taskDao.delete(task)
+    fun deleteTaskById(id: Long) = taskDao.deleteTaskById(id)
 }

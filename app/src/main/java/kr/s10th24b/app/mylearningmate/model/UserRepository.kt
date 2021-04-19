@@ -10,7 +10,7 @@ import javax.inject.Singleton
 class UserRepository @Inject internal constructor(
     private val userDao: UserDao
 ) {
-    fun getUser(id: String): Single<User> {
+    fun getUser(id: Long): Single<User> {
         return userDao.getUser(id)
     }
     fun getAllUser(): Observable<List<User>> {
