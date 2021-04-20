@@ -1,8 +1,10 @@
 package kr.s10th24b.app.mylearningmate.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBar
+import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.*
@@ -13,6 +15,7 @@ import kr.s10th24b.app.mylearningmate.R
 import kr.s10th24b.app.mylearningmate.databinding.ActivityMainBinding
 import kr.s10th24b.app.mylearningmate.model.DataRepository
 import kr.s10th24b.app.mylearningmate.viewmodel.MainViewModel
+import splitties.toast.toast
 
 @AndroidEntryPoint
 class MainActivity : RxAppCompatActivity() {
@@ -38,4 +41,5 @@ class MainActivity : RxAppCompatActivity() {
         binding.mainNavView.setupWithNavController(navController)
 //        setupActionBarWithNavController(navController,appBarConfiguration)
     }
+
 }

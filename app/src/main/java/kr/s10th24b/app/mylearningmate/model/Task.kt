@@ -8,11 +8,10 @@ import java.io.Serializable
 class Task : BaseEntity(), Serializable {
     @ColumnInfo var subject = ""
     @ColumnInfo var problemCount = 1
-    @ColumnInfo var startTime = ""
-    @ColumnInfo var endTime = ""
+    @ColumnInfo var time = ""
     override fun equals(other: Any?): Boolean {
         if (other !is Task) return false
         return (subject == other.subject && problemCount == other.problemCount &&
-                startTime == other.startTime && endTime == other.endTime)
+                time == other.time)
     }
 }

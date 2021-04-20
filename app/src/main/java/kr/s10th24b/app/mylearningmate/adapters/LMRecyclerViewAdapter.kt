@@ -59,7 +59,7 @@ class LMRecyclerViewAdapter :
         fun bind(task: Task) {
             binding.probCountText.text = task.problemCount.toString()
             binding.subjectText.text = task.subject
-            binding.timeText.text = "${task.startTime}~${task.endTime}"
+            binding.timeText.text = task.time
         }
     }
 }

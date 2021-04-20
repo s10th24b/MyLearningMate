@@ -151,8 +151,7 @@ class LearningMateViewModel @Inject internal constructor(
         val task = Task()
         task.subject = "토익"
         task.problemCount = Random.nextInt(100)
-        task.startTime = "02:00"
-        task.endTime = "02:10"
+        task.time = "02:10"
         insertTask(task)
     }
 }
