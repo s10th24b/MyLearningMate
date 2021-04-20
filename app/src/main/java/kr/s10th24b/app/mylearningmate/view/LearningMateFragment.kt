@@ -49,7 +49,6 @@ class LearningMateFragment : RxFragment(), AddTaskDialogFragment.AddTaskDialogLi
         savedInstanceState: Bundle?
     ): View {
 //        toast("LearningMateFragment onCreateView")
-        // Inflate the layout for this fragment
         binding.apply {
             viewModel = this@LearningMateFragment.viewModel
             lifecycleOwner = viewLifecycleOwner

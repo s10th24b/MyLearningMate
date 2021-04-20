@@ -38,17 +38,15 @@ class AddTaskDialogFragment : DialogFragment() {
                 setPositiveButton("추가", DialogInterface.OnClickListener { dialog, which ->
                     // User Clicked OK Button
                     Log.d("KHJ", "추가 버튼 클릭")
-                    val subject = binding.subjectText.text.toString()
+                    val subject = binding.subjectText.text.toString().trim()
                     val problemCount = binding.probCountNumberPicker.value
                     var hour = binding.hourPicker.value.toString()
                     if (hour.length < 2) hour = "0$hour"
                     var minute = binding.minutePicker.value.toString()
                     if (minute.length < 2) minute = "0$minute"
+                    val time = "$hour:$minute"
                     if (subject.isNotBlank() && (hour != "00" || minute != "00")) {
-                        val task = Task()
-                        task.subject = subject.trim()
-                        task.problemCount = problemCount
-                        task.time = "$hour:$minute"
+                        val task = Task(subject, problemCount, time)
                         listener.onDialogPositiveClick(this@AddTaskDialogFragment, task, true)
                     } else listener.onDialogPositiveClick(this@AddTaskDialogFragment, null, false)
                 })
