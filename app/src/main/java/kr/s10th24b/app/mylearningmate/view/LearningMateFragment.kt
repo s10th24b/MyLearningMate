@@ -86,15 +86,15 @@ class LearningMateFragment : RxFragment(), AddTaskDialogFragment.AddTaskDialogLi
         dialog.show(childFragmentManager, "AddTaskDialogFragment")
     }
 
-    override fun onDialogPositiveClick(dialog: DialogFragment) {
-        Log.d("KHJ", "onDialogPositiveClick in Fragment")
+    override fun onDialogPositiveClick(dialog: DialogFragment, task: Task?, completed: Boolean) {
+        if (completed) {
+            viewModel.insertTask(task as Task)
+        } else {
+            toast("적절하지 않은 Task 입니다. 입력값을 확인해주세요")
+        }
     }
 
     override fun onDialogNegativeClick(dialog: DialogFragment) {
         Log.d("KHJ", "onDialogNegativeClick in Fragment")
-    }
-
-    override fun onTaskProcessed(task: Task) {
-        viewModel.insertTask(task)
     }
 }

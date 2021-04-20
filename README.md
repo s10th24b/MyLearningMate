@@ -23,6 +23,7 @@ This is the Learning App
 - [X] Introduce Dagger Hilt (done at 21.04.17)
 - [X] Implement Drawer Layout (done at 21.04.19)
 - [X] Make Remove Button Delete RecyclerView Item
+- [X] Add addTask dialog fragment (done at 21.04.20)
 - [ ] Add LongClick Event for Context Menu in ViewHolder
 - [ ] Complete State View Design
 - [ ] Complete LearningMate View Design

@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
+import android.widget.NumberPicker
 import androidx.fragment.app.DialogFragment
 import androidx.loader.content.AsyncTaskLoader
 import kr.s10th24b.app.mylearningmate.R
@@ -18,14 +19,15 @@ import java.lang.ClassCastException
 import java.lang.IllegalStateException
 import kotlin.math.min
 
-class AddTaskDialogFragment : DialogFragment(){
+class AddTaskDialogFragment : DialogFragment() {
     lateinit var listener: AddTaskDialogListener
+
     interface AddTaskDialogListener {
-        fun onDialogPositiveClick(dialog: DialogFragment, task: Task)
+        fun onDialogPositiveClick(dialog: DialogFragment, task: Task?, completed: Boolean)
         fun onDialogNegativeClick(dialog: DialogFragment)
     }
 
-    val binding: AddTaskViewBinding by lazy{AddTaskViewBinding.inflate(layoutInflater)}
+    val binding: AddTaskViewBinding by lazy { AddTaskViewBinding.inflate(layoutInflater) }
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return requireActivity().let {
             // User the Builder class for convenient dialog construction
@@ -33,34 +35,29 @@ class AddTaskDialogFragment : DialogFragment(){
             val builder = AlertDialog.Builder(it)
             builder.apply {
                 setView(binding.root)
-                setPositiveButton("추가",DialogInterface.OnClickListener { dialog, which ->
+                setPositiveButton("추가", DialogInterface.OnClickListener { dialog, which ->
                     // User Clicked OK Button
-                    Log.d("KHJ","추가 버튼 클릭")
+                    Log.d("KHJ", "추가 버튼 클릭")
                     val subject = binding.subjectText.text.toString()
                     val problemCount = binding.probCountNumberPicker.value
                     var hour = binding.hourPicker.value.toString()
-                    Log.d("KHJ","hour: $hour")
                     if (hour.length < 2) hour = "0$hour"
-                    var minute = binding.minutePicker.toString()
-                    Log.d("KHJ","minute: $minute")
+                    var minute = binding.minutePicker.value.toString()
                     if (minute.length < 2) minute = "0$minute"
-                    if (subject.isNotBlank() && (hour != "00" && minute != "00")) {
+                    if (subject.isNotBlank() && (hour != "00" || minute != "00")) {
                         val task = Task()
-                        task.subject = subject
+                        task.subject = subject.trim()
                         task.problemCount = problemCount
                         task.time = "$hour:$minute"
-                        listener.onDialogPositiveClick(this@AddTaskDialogFragment, task)
-                    }
-                    else {
-
-                    }
+                        listener.onDialogPositiveClick(this@AddTaskDialogFragment, task, true)
+                    } else listener.onDialogPositiveClick(this@AddTaskDialogFragment, null, false)
                 })
-                setNegativeButton("취소",DialogInterface.OnClickListener {  dialog, which ->
-                    Log.d("KHJ","취소 버튼 클릭")
+                setNegativeButton("취소", DialogInterface.OnClickListener { dialog, which ->
+                    Log.d("KHJ", "취소 버튼 클릭")
                     listener.onDialogNegativeClick(this@AddTaskDialogFragment)
                 })
-                setMessage("Task 추가 MSG")
                 setTitle("Task 추가")
+//                setMessage("Task 추가 MSG")
             }
             binding.probCountNumberPicker.minValue = 1
             binding.probCountNumberPicker.maxValue = 3000
@@ -68,6 +65,10 @@ class AddTaskDialogFragment : DialogFragment(){
             binding.hourPicker.maxValue = 59
             binding.minutePicker.minValue = 0
             binding.minutePicker.maxValue = 59
+            val numPickerFormatter =
+                NumberPicker.Formatter { if (it < 10) "0$it" else "$it" }
+            binding.hourPicker.setFormatter(numPickerFormatter)
+            binding.minutePicker.setFormatter(numPickerFormatter)
             builder.create()
         } ?: throw IllegalStateException("Fragment cannot be null")
     }
@@ -75,9 +76,9 @@ class AddTaskDialogFragment : DialogFragment(){
     override fun onAttach(context: Context) {
         super.onAttach(context)
         try {
-            listener = parentFragment as AddTaskDialogListener
-            toast("context: $context")
-            toast("listener parentFragment: $parentFragment")
+            listener = parentFragment as AddTaskDialogFragment.AddTaskDialogListener
+//            toast("context: $context")
+//            toast("listener parentFragment: $parentFragment")
         } catch (e: ClassCastException) {
             throw ClassCastException(("$context must implement AddTaskDialogListener"))
         }
