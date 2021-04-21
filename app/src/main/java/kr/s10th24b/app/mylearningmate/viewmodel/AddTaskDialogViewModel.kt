@@ -3,6 +3,7 @@ package kr.s10th24b.app.mylearningmate.viewmodel
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.Observable
+import androidx.databinding.adapters.NumberPickerBindingAdapter
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel

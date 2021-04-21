@@ -91,16 +91,16 @@ class AddTaskDialogFragment(val mode: String = "add",val subject: String = "", v
             minutePicker.value = 34
         }
         viewModel.subject.observe(this) {
-            toast("viewModel.subject: $it")
+//            toast("viewModel.subject: $it")
         }
         viewModel.probCount.observe(this) {
-            toast("viewModel.probCount: $it")
+//            toast("viewModel.probCount: $it")
         }
         viewModel.hour.observe(this) {
-            toast("viewModel.hour: $it")
+//            toast("viewModel.hour: $it")
         }
         viewModel.minute.observe(this) {
-            toast("viewModel.minute: $it")
+//            toast("viewModel.minute: $it")
         }
         return super.onCreateView(inflater, container, savedInstanceState)
     }

@@ -48,13 +48,13 @@
 
             <NumberPicker
                 android:id="@+id/probCountNumberPicker"
-                numberPickerMaxValue="@{3000}"
-                numberPickerMinValue="@{1}"
+                app:maxValue="@{3000}"
+                app:minValue="@{1}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                numberPickerValue="@={viewModel.probCount}" />
+                android:value="@={viewModel.probCount}" />
 
         </LinearLayout>
 
@@ -75,8 +75,8 @@
 
             <NumberPicker
                 android:id="@+id/hourPicker"
-                numberPickerMaxValue="@{23}"
-                numberPickerMinValue="@{0}"
+                app:minValue="@{0}"
+                app:maxValue="@{23}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -84,7 +84,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/textView6"
                 app:layout_constraintTop_toTopOf="parent"
-                numberPickerValue="@={viewModel.hour}" />
+                android:value="@={viewModel.hour}" />
 
             <TextView
                 android:id="@+id/textView6"
@@ -98,8 +98,8 @@
 
             <NumberPicker
                 android:id="@+id/minutePicker"
-                numberPickerMinValue="@{0}"
-                numberPickerMaxValue="@{59}"
+                app:minValue="@{0}"
+                app:maxValue="@{59}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -108,7 +108,7 @@
                 app:layout_constraintStart_toEndOf="@+id/textView6"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0"
-                numberPickerValue="@={viewModel.minute}" />
+                android:value="@={viewModel.minute}" />
         </LinearLayout>
     </LinearLayout>
 </layout>
