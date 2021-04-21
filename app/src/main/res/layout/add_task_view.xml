@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="viewModel"
             type="kr.s10th24b.app.mylearningmate.viewmodel.AddTaskDialogViewModel" />
@@ -33,8 +35,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|center_horizontal|center_vertical"
                 android:layout_weight="1"
-                android:text="@={viewModel.subject}"
-                android:gravity="center|center_horizontal|center_vertical" />
+                android:gravity="center|center_horizontal|center_vertical"
+                android:text="@={viewModel.subject}" />
 
             <TextView
                 android:layout_width="0dp"
@@ -44,13 +46,15 @@
                 android:gravity="center"
                 android:text="문제 수" />
 
-            <kr.s10th24b.app.mylearningmate.customwidget.LMNumberPicker
+            <NumberPicker
                 android:id="@+id/probCountNumberPicker"
-                app:value="@{viewModel.probCount}"
+                numberPickerMaxValue="@{3000}"
+                numberPickerMinValue="@{1}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center" />
+                android:gravity="center"
+                numberPickerValue="@={viewModel.probCount}" />
 
         </LinearLayout>
 
@@ -69,16 +73,18 @@
                 android:gravity="center"
                 android:text="시간" />
 
-            <kr.s10th24b.app.mylearningmate.customwidget.LMNumberPicker
+            <NumberPicker
                 android:id="@+id/hourPicker"
+                numberPickerMaxValue="@{23}"
+                numberPickerMinValue="@{0}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                app:value="@{viewModel.hour}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/textView6"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                numberPickerValue="@={viewModel.hour}" />
 
             <TextView
                 android:id="@+id/textView6"
@@ -90,9 +96,10 @@
                 app:layout_constraintTop_toTopOf="@+id/hourPicker"
                 tools:layout_editor_absoluteX="343dp" />
 
-            <kr.s10th24b.app.mylearningmate.customwidget.LMNumberPicker
+            <NumberPicker
                 android:id="@+id/minutePicker"
-                app:value="@{viewModel.minute}"
+                numberPickerMinValue="@{0}"
+                numberPickerMaxValue="@{59}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -100,9 +107,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textView6"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
-
+                app:layout_constraintVertical_bias="0.0"
+                numberPickerValue="@={viewModel.minute}" />
         </LinearLayout>
-
     </LinearLayout>
 </layout>

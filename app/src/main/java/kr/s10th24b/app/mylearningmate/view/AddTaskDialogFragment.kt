@@ -78,20 +78,29 @@ class AddTaskDialogFragment(val mode: String = "add",val subject: String = "", v
         binding.apply {
             viewModel = this@AddTaskDialogFragment.viewModel
             lifecycleOwner = this@AddTaskDialogFragment
-            probCountNumberPicker.setMinMaxValue(1, 3000)
+//            probCountNumberPicker.setMinMaxValue(1, 3000)
             val numPickerFormatter = NumberPicker.Formatter { if (it < 10) "0$it" else "$it" }
-            hourPicker.setMinMaxValue(0, 23)
+//            hourPicker.setMinMaxValue(0, 23)
             hourPicker.setFormatter(numPickerFormatter)
-            minutePicker.setMinMaxValue(0, 59)
+//            minutePicker.setMinMaxValue(0, 59)
             minutePicker.setFormatter(numPickerFormatter)
             subjectText.setText(subject)
             probCountNumberPicker.value = probCount
             hourPicker.value = hour
+            minutePicker.value = minute
             minutePicker.value = 34
         }
         viewModel.subject.observe(this) {
-//            binding.subjectText.edit
-            toast("viewModel.subject: ${viewModel.subject}")
+            toast("viewModel.subject: $it")
+        }
+        viewModel.probCount.observe(this) {
+            toast("viewModel.probCount: $it")
+        }
+        viewModel.hour.observe(this) {
+            toast("viewModel.hour: $it")
+        }
+        viewModel.minute.observe(this) {
+            toast("viewModel.minute: $it")
         }
         return super.onCreateView(inflater, container, savedInstanceState)
     }
