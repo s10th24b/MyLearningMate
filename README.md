@@ -37,6 +37,6 @@ This is the Learning App
 
 ----------------
 ### Secondary To-do List 
-- [ ] Make UI Better Using Material Design 
+- [ ] Make UI Better Using Material Design and CustomView
 - [ ] Add Dark/Light Theme
 - [ ] Make User Choose Light/Night Theme

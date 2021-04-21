@@ -38,6 +38,7 @@ class AddTaskDialogFragment(val mode: String = "add",val subject: String = "", v
 
     val binding: AddTaskViewBinding by lazy { AddTaskViewBinding.inflate(layoutInflater) }
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        Log.d("KHJ","onCreateDialog")
         return requireActivity().let {
             // User the Builder class for convenient dialog construction
 //            val builder = AlertDialog.Builder(requireParentFragment().context)
@@ -75,21 +76,7 @@ class AddTaskDialogFragment(val mode: String = "add",val subject: String = "", v
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding.apply {
-            viewModel = this@AddTaskDialogFragment.viewModel
-            lifecycleOwner = this@AddTaskDialogFragment
-//            probCountNumberPicker.setMinMaxValue(1, 3000)
-            val numPickerFormatter = NumberPicker.Formatter { if (it < 10) "0$it" else "$it" }
-//            hourPicker.setMinMaxValue(0, 23)
-            hourPicker.setFormatter(numPickerFormatter)
-//            minutePicker.setMinMaxValue(0, 59)
-            minutePicker.setFormatter(numPickerFormatter)
-            subjectText.setText(subject)
-            probCountNumberPicker.value = probCount
-            hourPicker.value = hour
-            minutePicker.value = minute
-            minutePicker.value = 34
-        }
+        Log.d("KHJ","onCreateView")
         viewModel.subject.observe(this) {
 //            toast("viewModel.subject: $it")
         }
@@ -102,12 +89,15 @@ class AddTaskDialogFragment(val mode: String = "add",val subject: String = "", v
         viewModel.minute.observe(this) {
 //            toast("viewModel.minute: $it")
         }
+        binding.apply {
+            viewModel = this@AddTaskDialogFragment.viewModel
+            lifecycleOwner = this@AddTaskDialogFragment
+            val numPickerFormatter = NumberPicker.Formatter { if (it < 10) "0$it" else "$it" }
+            hourPicker.setFormatter(numPickerFormatter)
+            minutePicker.setFormatter(numPickerFormatter)
+        }
+        viewModel.initialize(subject,probCount,hour,minute)
         return super.onCreateView(inflater, container, savedInstanceState)
-    }
-
-    fun NumberPicker.setMinMaxValue(min: Int, max: Int) {
-        minValue = min
-        maxValue = max
     }
 
     override fun onAttach(context: Context) {
