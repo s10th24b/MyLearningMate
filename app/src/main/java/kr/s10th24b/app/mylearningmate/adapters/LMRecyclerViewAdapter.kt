@@ -3,6 +3,7 @@ package kr.s10th24b.app.mylearningmate.adapters
 import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.view.menu.MenuView
@@ -16,6 +17,8 @@ import kr.s10th24b.app.mylearningmate.R
 import kr.s10th24b.app.mylearningmate.databinding.LearningMateCardViewBinding
 import kr.s10th24b.app.mylearningmate.model.Task
 import kr.s10th24b.app.mylearningmate.utilities.TaskDiffUtilCallback
+import splitties.coroutines.repeatWhileActive
+import splitties.toast.toast
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -60,6 +63,11 @@ class LMRecyclerViewAdapter :
             binding.probCountText.text = task.problemCount.toString()
             binding.subjectText.text = task.subject
             binding.timeText.text = task.time
+            binding.lmcardView.setOnCreateContextMenuListener { menu, view, menuInfo ->
+                val inflater = MenuInflater(view.context)
+                inflater.inflate(R.menu.lm_card_context_menu,menu)
+                toast("menuInfo: $menuInfo")
+            }
         }
     }
 }

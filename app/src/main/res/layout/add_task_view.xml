@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="kr.s10th24b.app.mylearningmate.viewmodel.LearningMateViewModel" />
+            type="kr.s10th24b.app.mylearningmate.viewmodel.AddTaskDialogViewModel" />
     </data>
 
     <LinearLayout
@@ -33,6 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|center_horizontal|center_vertical"
                 android:layout_weight="1"
+                android:text="@={viewModel.subject}"
                 android:gravity="center|center_horizontal|center_vertical" />
 
             <TextView
@@ -43,8 +44,9 @@
                 android:gravity="center"
                 android:text="문제 수" />
 
-            <NumberPicker
+            <kr.s10th24b.app.mylearningmate.customwidget.LMNumberPicker
                 android:id="@+id/probCountNumberPicker"
+                app:value="@{viewModel.probCount}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -67,12 +69,13 @@
                 android:gravity="center"
                 android:text="시간" />
 
-            <NumberPicker
+            <kr.s10th24b.app.mylearningmate.customwidget.LMNumberPicker
                 android:id="@+id/hourPicker"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                app:value="@{viewModel.hour}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/textView6"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -87,8 +90,9 @@
                 app:layout_constraintTop_toTopOf="@+id/hourPicker"
                 tools:layout_editor_absoluteX="343dp" />
 
-            <NumberPicker
+            <kr.s10th24b.app.mylearningmate.customwidget.LMNumberPicker
                 android:id="@+id/minutePicker"
+                app:value="@{viewModel.minute}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

@@ -23,7 +23,7 @@
     <fragment
         android:id="@+id/stateFragment"
         android:name="kr.s10th24b.app.mylearningmate.view.StateFragment"
-        android:label="My State"
+        android:label="State"
         tools:layout="@layout/fragment_state">
         <action
             android:id="@+id/action_stateFragment_to_learningMateFragment"
@@ -35,7 +35,7 @@
     <fragment
         android:id="@+id/learningMateFragment"
         android:name="kr.s10th24b.app.mylearningmate.view.LearningMateFragment"
-        android:label="My Learning Mate"
+        android:label="Learning Mate(Settings)"
         tools:layout="@layout/fragment_learning_mate">
         <action
             android:id="@+id/action_learningMateFragment_to_stateFragment"
@@ -47,7 +47,7 @@
     <fragment
         android:id="@+id/profileFragment"
         android:name="kr.s10th24b.app.mylearningmate.view.ProfileFragment"
-        android:label="My Profile"
+        android:label="Profile"
         tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/action_profileFragment_to_learningMateFragment"

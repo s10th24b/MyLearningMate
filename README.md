@@ -24,7 +24,8 @@ This is the Learning App
 - [X] Implement Drawer Layout (done at 21.04.19)
 - [X] Make Remove Button Delete RecyclerView Item
 - [X] Add addTask dialog fragment (done at 21.04.20)
-- [ ] Add LongClick Event for Context Menu in ViewHolder
+- [X] Add LongClick Event for Context Menu in ViewHolder (done at 21.04.21)
+- [X] Add Custom NumberPicker (done at 21.04.21)
 - [ ] Complete State View Design
 - [ ] Complete LearningMate View Design
 - [ ] Complete Profile View Design
