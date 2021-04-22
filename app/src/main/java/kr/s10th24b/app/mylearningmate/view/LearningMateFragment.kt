@@ -52,7 +52,7 @@ class LearningMateFragment : RxFragment(), AddTaskDialogFragment.AddTaskDialogLi
             adapter.submitList(it)
         }
         binding.floatingActionButton.setOnClickListener {
-            showAddTaskDialog()
+            showAddTaskDialog(mode = "추가")
         }
         adapter.setListAdapterListener(object : LMRecyclerViewAdapter.ListAdapterListener {
             override fun onRemoveButtonClicked(task: Task) {
@@ -60,22 +60,16 @@ class LearningMateFragment : RxFragment(), AddTaskDialogFragment.AddTaskDialogLi
             }
 
             override fun onMenuOpened(task: Task) {
-                toast("onMenuOpened")
+//                toast("onMenuOpened")
                 selectedTask = task
             }
         })
-//        adapter.removeButtonObservable
-//            .bindUntilEvent(this, FragmentEvent.DESTROY_VIEW)
-//            .subscribe {
-////                toast(it.toString())
-//                viewModel.deleteTaskById(it)
-//            }
 
         return binding.root
     }
 
     fun showAddTaskDialog(
-        mode: String = "add",
+        mode: String = "추가",
         subject: String = "",
         probCount: Int = 1,
         hour: Int = 1,
@@ -92,7 +86,7 @@ class LearningMateFragment : RxFragment(), AddTaskDialogFragment.AddTaskDialogLi
         dialog.show(childFragmentManager, "AddTaskDialogFragment")
     }
 
-    fun showAddTaskDialog(mode: String = "add", task: Task) {
+    fun showAddTaskDialog(mode: String = "수정", task: Task) {
         val dialog = AddTaskDialogFragment(mode, task)
 //        dialog.show(requireActivity().supportFragmentManager, "AddTaskDialogFragment")
         // 위처럼 하면, MainActivity에 Listener를 구현하고 거기서 써야한다. 하지만 나는 Fragment 안에서 쓰고싶기 때문에.
@@ -117,16 +111,12 @@ class LearningMateFragment : RxFragment(), AddTaskDialogFragment.AddTaskDialogLi
     }
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
-        val info = item.menuInfo
-//        toast("info: $info")
         return when (item.itemId) {
             R.id.lmCardContextMenuModify -> {
-                // modify
-                showAddTaskDialog("modify", selectedTask)
+                showAddTaskDialog(task = selectedTask)
                 true
             }
             R.id.lmCardContextMenuDelete -> {
-                // delete
                 viewModel.deleteTask(selectedTask)
                 true
             }

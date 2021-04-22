@@ -26,15 +26,23 @@ import java.lang.IllegalStateException
 import kotlin.math.min
 
 @AndroidEntryPoint
-class AddTaskDialogFragment(var mode: String = "add",var subject: String = "", var probCount: Int = 1, var hour: Int = 1, var minute: Int = 0) :
+class AddTaskDialogFragment(
+    var mode: String = "add",
+    var subject: String = "",
+    var probCount: Int = 1,
+    var hour: Int = 1,
+    var minute: Int = 0
+) :
     RxDialogFragment() {
+
     constructor(mode: String, task: Task) : this() {
         this.mode = mode
         this.subject = task.subject
         this.probCount = task.problemCount
-        this.hour = task.time.substring(0,2).toInt()
+        this.hour = task.time.substring(0, 2).toInt()
         this.minute = task.time.substring(3).toInt()
     }
+
     lateinit var listener: AddTaskDialogListener
     val viewModel: AddTaskDialogViewModel by viewModels()
 
@@ -45,13 +53,13 @@ class AddTaskDialogFragment(var mode: String = "add",var subject: String = "", v
 
     val binding: AddTaskViewBinding by lazy { AddTaskViewBinding.inflate(layoutInflater) }
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        Log.d("KHJ","onCreateDialog")
+        Log.d("KHJ", "onCreateDialog")
         return requireActivity().let {
             // User the Builder class for convenient dialog construction
 //            val builder = AlertDialog.Builder(requireParentFragment().context)
             val builder = AlertDialog.Builder(it)
             builder.apply {
-                setPositiveButton("추가", DialogInterface.OnClickListener { dialog, which ->
+                setPositiveButton("작성") { dialog, which ->
                     // User Clicked OK Button
                     Log.d("KHJ", "추가 버튼 클릭")
                     val subject = binding.subjectText.text.toString().trim()
@@ -65,12 +73,12 @@ class AddTaskDialogFragment(var mode: String = "add",var subject: String = "", v
                         val task = Task(subject, problemCount, time)
                         listener.onDialogPositiveClick(this@AddTaskDialogFragment, task, true)
                     } else listener.onDialogPositiveClick(this@AddTaskDialogFragment, null, false)
-                })
-                setNegativeButton("취소", DialogInterface.OnClickListener { dialog, which ->
+                }
+                setNegativeButton("취소") { dialog, which ->
                     Log.d("KHJ", "취소 버튼 클릭")
                     listener.onDialogNegativeClick(this@AddTaskDialogFragment)
-                })
-                setTitle("Task 추가")
+                }
+                setTitle("Task $mode")
                 setView(binding.root)
 //                setMessage("Task 추가 MSG")
             }
@@ -83,7 +91,7 @@ class AddTaskDialogFragment(var mode: String = "add",var subject: String = "", v
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Log.d("KHJ","onCreateView")
+        Log.d("KHJ", "onCreateView")
         viewModel.subject.observe(this) {
 //            toast("viewModel.subject: $it")
         }
@@ -103,7 +111,7 @@ class AddTaskDialogFragment(var mode: String = "add",var subject: String = "", v
             hourPicker.setFormatter(numPickerFormatter)
             minutePicker.setFormatter(numPickerFormatter)
         }
-        viewModel.initialize(subject,probCount,hour,minute)
+        viewModel.initialize(subject, probCount, hour, minute)
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
