@@ -27,7 +27,8 @@ This is the Learning App
 - [X] Add LongClick Event for Context Menu in ViewHolder (done at 21.04.21)
 - [X] ~Add Custom NumberPicker (done at 21.04.21) (use bindingadapter instead)~
 - [X] Add Binding Adapter for NumberPicker (done at 21.04.21)
-- [ ] Add Two-Way DataBinding
+- [X] Add Two-Way DataBinding (done at 21.04.21)
+- [X] Make Custom ListAdapterListener to notify which task user selected (done at 21.04.22)
 - [ ] Complete State View Design
 - [ ] Complete LearningMate View Design
 - [ ] Complete Profile View Design

@@ -2,10 +2,7 @@ package kr.s10th24b.app.mylearningmate.view
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,6 +22,7 @@ class LearningMateFragment : RxFragment(), AddTaskDialogFragment.AddTaskDialogLi
     private val binding by lazy { FragmentLearningMateBinding.inflate(layoutInflater) }
     private val viewModel: LearningMateViewModel by viewModels()
     private val adapter: LMRecyclerViewAdapter by lazy { LMRecyclerViewAdapter() }
+    private lateinit var selectedTask: Task
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,18 +54,46 @@ class LearningMateFragment : RxFragment(), AddTaskDialogFragment.AddTaskDialogLi
         binding.floatingActionButton.setOnClickListener {
             showAddTaskDialog()
         }
-        adapter.removeButtonObservable
-            .bindUntilEvent(this, FragmentEvent.DESTROY_VIEW)
-            .subscribe {
-//                toast(it.toString())
-                viewModel.deleteTaskById(it)
+        adapter.setListAdapterListener(object : LMRecyclerViewAdapter.ListAdapterListener {
+            override fun onRemoveButtonClicked(task: Task) {
+                viewModel.deleteTask(task)
             }
+
+            override fun onMenuOpened(task: Task) {
+                toast("onMenuOpened")
+                selectedTask = task
+            }
+        })
+//        adapter.removeButtonObservable
+//            .bindUntilEvent(this, FragmentEvent.DESTROY_VIEW)
+//            .subscribe {
+////                toast(it.toString())
+//                viewModel.deleteTaskById(it)
+//            }
 
         return binding.root
     }
 
-    fun showAddTaskDialog(mode: String = "add",subject: String = "", probCount: Int = 1, hour: Int = 1, minute: Int = 0) {
-        val dialog = AddTaskDialogFragment(mode,subject,probCount,hour,minute)
+    fun showAddTaskDialog(
+        mode: String = "add",
+        subject: String = "",
+        probCount: Int = 1,
+        hour: Int = 1,
+        minute: Int = 0
+    ) {
+        val dialog = AddTaskDialogFragment(mode, subject, probCount, hour, minute)
+//        dialog.show(requireActivity().supportFragmentManager, "AddTaskDialogFragment")
+        // 위처럼 하면, MainActivity에 Listener를 구현하고 거기서 써야한다. 하지만 나는 Fragment 안에서 쓰고싶기 때문에.
+        // ProfileFragment에서 show 를 할 때 FragmentManager 문제인줄 알고, parentFragmentManager 와 childFragmentManager를 검색해보고
+        // 지식을 쌓고 있었는데.. 우연히 한 티스토리에서 알게 되었다. show 가 문제가 아니라, 리스너 등록에서
+        // 넘어온 context, 즉, 근본이 MainActivity 인 컨텍스트가 아니라 이 Dialog의 부모인 ProfileFragment를 가리키는
+        // parentFragment를 캐스팅해야하는 것이었다....
+        //https://jijs.tistory.com/entry/interface%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%98%EC%97%AC-DialogFragment%EC%9D%B4%EB%B2%A4%ED%8A%B8%EC%9D%98-%EA%B5%AC%ED%98%84%EB%B6%80%EB%A5%BC-%EB%8B%A4%EB%A5%B8-%EC%9E%A5%EC%86%8C%EC%97%90-%EA%B5%AC%ED%98%84%ED%95%9C%EB%8B%A4
+        dialog.show(childFragmentManager, "AddTaskDialogFragment")
+    }
+
+    fun showAddTaskDialog(mode: String = "add", task: Task) {
+        val dialog = AddTaskDialogFragment(mode, task)
 //        dialog.show(requireActivity().supportFragmentManager, "AddTaskDialogFragment")
         // 위처럼 하면, MainActivity에 Listener를 구현하고 거기서 써야한다. 하지만 나는 Fragment 안에서 쓰고싶기 때문에.
         // ProfileFragment에서 show 를 할 때 FragmentManager 문제인줄 알고, parentFragmentManager 와 childFragmentManager를 검색해보고
@@ -92,15 +118,16 @@ class LearningMateFragment : RxFragment(), AddTaskDialogFragment.AddTaskDialogLi
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
         val info = item.menuInfo
-        toast("info: $info")
-        return when(item.itemId) {
+//        toast("info: $info")
+        return when (item.itemId) {
             R.id.lmCardContextMenuModify -> {
                 // modify
-                showAddTaskDialog("modify")
+                showAddTaskDialog("modify", selectedTask)
                 true
             }
             R.id.lmCardContextMenuDelete -> {
                 // delete
+                viewModel.deleteTask(selectedTask)
                 true
             }
             else -> super.onContextItemSelected(item)

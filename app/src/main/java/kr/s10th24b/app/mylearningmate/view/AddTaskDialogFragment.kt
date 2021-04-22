@@ -26,8 +26,15 @@ import java.lang.IllegalStateException
 import kotlin.math.min
 
 @AndroidEntryPoint
-class AddTaskDialogFragment(val mode: String = "add",val subject: String = "", val probCount: Int = 1, val hour: Int = 1, val minute: Int = 0) :
+class AddTaskDialogFragment(var mode: String = "add",var subject: String = "", var probCount: Int = 1, var hour: Int = 1, var minute: Int = 0) :
     RxDialogFragment() {
+    constructor(mode: String, task: Task) : this() {
+        this.mode = mode
+        this.subject = task.subject
+        this.probCount = task.problemCount
+        this.hour = task.time.substring(0,2).toInt()
+        this.minute = task.time.substring(3).toInt()
+    }
     lateinit var listener: AddTaskDialogListener
     val viewModel: AddTaskDialogViewModel by viewModels()
 
@@ -103,7 +110,7 @@ class AddTaskDialogFragment(val mode: String = "add",val subject: String = "", v
     override fun onAttach(context: Context) {
         super.onAttach(context)
         try {
-            listener = parentFragment as AddTaskDialogFragment.AddTaskDialogListener
+            listener = parentFragment as AddTaskDialogListener
 //            toast("context: $context")
 //            toast("listener parentFragment: $parentFragment")
         } catch (e: ClassCastException) {

@@ -28,6 +28,7 @@ class LearningMateViewModel @Inject internal constructor(
     private val dataRepository: DataRepository
 ) : ViewModel() {
     val taskList = MutableLiveData<List<Task>>()
+    val selectedTask = MutableLiveData<Task>()
     private val mCompositeDatabase by lazy { CompositeDisposable() }
 
     init {
@@ -108,18 +109,6 @@ class LearningMateViewModel @Inject internal constructor(
             })
     }
 
-    fun getTask(id: Long) {
-        dataRepository.getTaskRepository().getTask(id)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeWith(object : DisposableSingleObserver<Task>() {
-                override fun onSuccess(t: Task?) {
-                }
-
-                override fun onError(e: Throwable?) {
-                }
-            })
-    }
 
     fun getAllTask() {
         dataRepository.getTaskRepository().getAllTask()
@@ -143,6 +132,21 @@ class LearningMateViewModel @Inject internal constructor(
 
                 override fun onComplete() {
                     Log.d("KHJ", "getAllTask() onComplete")
+                }
+            })
+    }
+
+    fun getTask(id: Long) {
+        dataRepository.getTaskRepository().getTask(id)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeWith(object : DisposableSingleObserver<Task>() {
+                override fun onSuccess(t: Task?) {
+                    selectedTask.value = t as Task
+                }
+
+                override fun onError(e: Throwable?) {
+                    error(e?.printStackTrace().toString())
                 }
             })
     }
