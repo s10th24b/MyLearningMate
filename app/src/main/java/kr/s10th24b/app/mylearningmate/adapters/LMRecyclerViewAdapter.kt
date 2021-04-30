@@ -24,9 +24,7 @@ import javax.inject.Singleton
 
 class LMRecyclerViewAdapter :
     ListAdapter<Task, LMRecyclerViewAdapter.LMRecyclerViewHolder>(TaskDiffUtilCallback()) {
-    private val mCompositeDisposable: CompositeDisposable by lazy { CompositeDisposable() }
     lateinit var listener: ListAdapterListener
-    val removeButtonObservable = PublishSubject.create<Long>()
 
     interface ListAdapterListener {
         fun onRemoveButtonClicked(task: Task)

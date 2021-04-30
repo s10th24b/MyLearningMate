@@ -42,13 +42,11 @@ class AddTaskDialogFragment(
         this.hour = task.time.substring(0, 2).toInt()
         this.minute = task.time.substring(3).toInt()
         this.existTaskFlag = true
-        this.existTask = task
         this.existTaskId = task.id
     }
 
     lateinit var listener: AddTaskDialogListener
     private var existTaskFlag = false
-    private var existTask = Task()
     private var existTaskId = 0L
     val viewModel: AddTaskDialogViewModel by viewModels()
 

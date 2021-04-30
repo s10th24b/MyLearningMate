@@ -26,7 +26,7 @@ This is the Learning App
 - [X] Add addTask dialog fragment (done at 21.04.20)
 - [X] Add LongClick Event for Context Menu in ViewHolder (done at 21.04.21)
 - [X] Complete ContextMenu Function (done at 21.04.30)
-- [X] ~Add Custom NumberPicker (done at 21.04.21) (use bindingadapter instead)~
+- [X] ~Add Custom NumberPicker (done at 21.04.21) (use bindingAdapter instead)~
 - [X] Add Binding Adapter for NumberPicker (done at 21.04.21)
 - [X] Add Two-Way DataBinding (done at 21.04.21)
 - [X] Make Custom ListAdapterListener to notify which task user selected (done at 21.04.22)
