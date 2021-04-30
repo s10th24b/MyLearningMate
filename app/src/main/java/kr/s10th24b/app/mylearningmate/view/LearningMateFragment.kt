@@ -98,12 +98,19 @@ class LearningMateFragment : RxFragment(), AddTaskDialogFragment.AddTaskDialogLi
         dialog.show(childFragmentManager, "AddTaskDialogFragment")
     }
 
-    override fun onDialogPositiveClick(dialog: DialogFragment, task: Task?, completed: Boolean) {
+    override fun onDialogPositiveClick(
+        dialog: DialogFragment,
+        task: Task?,
+        mode: String,
+        completed: Boolean
+    ) {
         if (completed) {
-            viewModel.insertTask(task as Task)
-        } else {
-            toast("적절하지 않은 Task 입니다. 입력값을 확인해주세요")
-        }
+            when (mode) {
+                "추가" -> viewModel.insertTask(task as Task)
+                "수정" -> viewModel.updateTask(task as Task)
+                else -> toast("$mode else in onDialogPositiveClick()")
+            }
+        } else toast("적절하지 않은 Task 입니다. 입력값을 확인해주세요")
     }
 
     override fun onDialogNegativeClick(dialog: DialogFragment) {
@@ -113,7 +120,7 @@ class LearningMateFragment : RxFragment(), AddTaskDialogFragment.AddTaskDialogLi
     override fun onContextItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.lmCardContextMenuModify -> {
-                showAddTaskDialog(task = selectedTask)
+                showAddTaskDialog(mode = "수정", task = selectedTask)
                 true
             }
             R.id.lmCardContextMenuDelete -> {

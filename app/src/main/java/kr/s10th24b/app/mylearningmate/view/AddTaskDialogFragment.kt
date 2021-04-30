@@ -27,7 +27,7 @@ import kotlin.math.min
 
 @AndroidEntryPoint
 class AddTaskDialogFragment(
-    var mode: String = "add",
+    var mode: String = "추가",
     var subject: String = "",
     var probCount: Int = 1,
     var hour: Int = 1,
@@ -41,13 +41,25 @@ class AddTaskDialogFragment(
         this.probCount = task.problemCount
         this.hour = task.time.substring(0, 2).toInt()
         this.minute = task.time.substring(3).toInt()
+        this.existTaskFlag = true
+        this.existTask = task
+        this.existTaskId = task.id
     }
 
     lateinit var listener: AddTaskDialogListener
+    private var existTaskFlag = false
+    private var existTask = Task()
+    private var existTaskId = 0L
     val viewModel: AddTaskDialogViewModel by viewModels()
 
     interface AddTaskDialogListener {
-        fun onDialogPositiveClick(dialog: DialogFragment, task: Task?, completed: Boolean)
+        fun onDialogPositiveClick(
+            dialog: DialogFragment,
+            task: Task?,
+            mode: String,
+            completed: Boolean
+        )
+
         fun onDialogNegativeClick(dialog: DialogFragment)
     }
 
@@ -71,8 +83,14 @@ class AddTaskDialogFragment(
                     val time = "$hour:$minute"
                     if (subject.isNotBlank() && (hour != "00" || minute != "00")) {
                         val task = Task(subject, problemCount, time)
-                        listener.onDialogPositiveClick(this@AddTaskDialogFragment, task, true)
-                    } else listener.onDialogPositiveClick(this@AddTaskDialogFragment, null, false)
+                        if (existTaskFlag) task.id = existTaskId
+                        listener.onDialogPositiveClick(this@AddTaskDialogFragment, task, mode, true)
+                    } else listener.onDialogPositiveClick(
+                        this@AddTaskDialogFragment,
+                        null,
+                        mode,
+                        false
+                    )
                 }
                 setNegativeButton("취소") { dialog, which ->
                     Log.d("KHJ", "취소 버튼 클릭")

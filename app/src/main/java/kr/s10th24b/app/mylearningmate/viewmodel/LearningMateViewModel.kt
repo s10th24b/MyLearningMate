@@ -45,7 +45,7 @@ class LearningMateViewModel @Inject internal constructor(
                 }
 
                 override fun onComplete() {
-                    Log.d("KHJ", "insertTask() onComplete ${task.problemCount}")
+                    Log.d("KHJ", "insertTask() onComplete ${task.id}")
                 }
 
                 override fun onError(e: Throwable?) {
@@ -97,10 +97,11 @@ class LearningMateViewModel @Inject internal constructor(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeWith(object : CompletableObserver {
                 override fun onSubscribe(d: Disposable?) {
+                    Log.d("KHJ","updateTask() onSubscribe")
                 }
 
                 override fun onComplete() {
-                    error("updateTask() onComplete")
+                    Log.d("KHJ","updateTask() onComplete")
                 }
 
                 override fun onError(e: Throwable?) {

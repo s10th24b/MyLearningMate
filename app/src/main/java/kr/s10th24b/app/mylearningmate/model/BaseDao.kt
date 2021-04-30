@@ -8,9 +8,9 @@ interface BaseDao<T> {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(vararg obj: T): Completable
 
-    @Update
+    @Update(onConflict = OnConflictStrategy.REPLACE)
     fun update(obj: T): Completable
 
-    @Delete()
+    @Delete
     fun delete(obj: T): Completable
 }

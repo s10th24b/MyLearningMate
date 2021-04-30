@@ -25,6 +25,7 @@ This is the Learning App
 - [X] Make Remove Button Delete RecyclerView Item
 - [X] Add addTask dialog fragment (done at 21.04.20)
 - [X] Add LongClick Event for Context Menu in ViewHolder (done at 21.04.21)
+- [X] Complete ContextMenu Function (done at 21.04.30)
 - [X] ~Add Custom NumberPicker (done at 21.04.21) (use bindingadapter instead)~
 - [X] Add Binding Adapter for NumberPicker (done at 21.04.21)
 - [X] Add Two-Way DataBinding (done at 21.04.21)
