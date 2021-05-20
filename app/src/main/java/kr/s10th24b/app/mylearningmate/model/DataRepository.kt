@@ -16,5 +16,4 @@ class DataRepository @Inject internal constructor(
 ) {
     fun getUserRepository() = userRepository
     fun getTaskRepository() = taskRepository
-
 }
