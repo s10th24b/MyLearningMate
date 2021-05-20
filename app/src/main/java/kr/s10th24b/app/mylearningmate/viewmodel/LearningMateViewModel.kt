@@ -111,7 +111,7 @@ class LearningMateViewModel @Inject internal constructor(
     }
 
 
-    fun getAllTask() {
+    private fun getAllTask() {
         dataRepository.getTaskRepository().getAllTask()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
