@@ -32,8 +32,7 @@ class AddTaskDialogFragment(
     var probCount: Int = 1,
     var hour: Int = 1,
     var minute: Int = 0
-) :
-    RxDialogFragment() {
+) : RxDialogFragment() {
 
     constructor(mode: String, task: Task) : this() {
         this.mode = mode
@@ -58,7 +57,9 @@ class AddTaskDialogFragment(
             completed: Boolean
         )
 
-        fun onDialogNegativeClick(dialog: DialogFragment)
+        fun onDialogNegativeClick(dialog: DialogFragment) {
+
+        }
     }
 
     val binding: AddTaskViewBinding by lazy { AddTaskViewBinding.inflate(layoutInflater) }
