@@ -7,6 +7,7 @@ import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.view.menu.MenuView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.jakewharton.rxbinding4.view.clicks
@@ -16,7 +17,6 @@ import io.reactivex.rxjava3.subjects.PublishSubject
 import kr.s10th24b.app.mylearningmate.R
 import kr.s10th24b.app.mylearningmate.databinding.LearningMateCardViewBinding
 import kr.s10th24b.app.mylearningmate.model.Task
-import kr.s10th24b.app.mylearningmate.utilities.TaskDiffUtilCallback
 import splitties.coroutines.repeatWhileActive
 import splitties.toast.toast
 import java.util.concurrent.TimeUnit
@@ -81,4 +81,8 @@ class LMRecyclerViewAdapter :
             binding.timeText.text = task.time
         }
     }
+}
+class TaskDiffUtilCallback : DiffUtil.ItemCallback<Task>() {
+    override fun areItemsTheSame(oldItem: Task, newItem: Task) = oldItem.id == newItem.id
+    override fun areContentsTheSame(oldItem: Task, newItem: Task) = oldItem == newItem
 }
