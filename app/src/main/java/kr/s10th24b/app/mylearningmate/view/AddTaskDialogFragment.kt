@@ -5,7 +5,6 @@ import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +17,7 @@ import com.trello.rxlifecycle4.components.support.RxDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kr.s10th24b.app.mylearningmate.databinding.AddTaskViewBinding
 import kr.s10th24b.app.mylearningmate.model.Task
+import kr.s10th24b.app.mylearningmate.utilities.DevTool.logD
 import kr.s10th24b.app.mylearningmate.viewmodel.AddTaskDialogViewModel
 import splitties.systemservices.subscriptionManager
 import splitties.toast.toast
@@ -64,7 +64,7 @@ class AddTaskDialogFragment(
 
     val binding: AddTaskViewBinding by lazy { AddTaskViewBinding.inflate(layoutInflater) }
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        Log.d("KHJ", "onCreateDialog")
+        logD("onCreateDialog")
         return requireActivity().let {
             // User the Builder class for convenient dialog construction
 //            val builder = AlertDialog.Builder(requireParentFragment().context)
@@ -72,7 +72,7 @@ class AddTaskDialogFragment(
             builder.apply {
                 setPositiveButton("작성") { dialog, which ->
                     // User Clicked OK Button
-                    Log.d("KHJ", "추가 버튼 클릭")
+                    logD("추가 버튼 클릭")
                     val subject = binding.subjectText.text.toString().trim()
                     val problemCount = binding.probCountNumberPicker.value
                     var hour = binding.hourPicker.value.toString()
@@ -92,7 +92,7 @@ class AddTaskDialogFragment(
                     )
                 }
                 setNegativeButton("취소") { dialog, which ->
-                    Log.d("KHJ", "취소 버튼 클릭")
+                    logD( "취소 버튼 클릭")
                     listener.onDialogNegativeClick(this@AddTaskDialogFragment)
                 }
                 setTitle("Task $mode")
@@ -108,7 +108,7 @@ class AddTaskDialogFragment(
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Log.d("KHJ", "onCreateView")
+        logD( "onCreateView")
         viewModel.subject.observe(this) {
 //            toast("viewModel.subject: $it")
         }

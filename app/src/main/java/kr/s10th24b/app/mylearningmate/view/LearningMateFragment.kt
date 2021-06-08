@@ -1,7 +1,6 @@
 package kr.s10th24b.app.mylearningmate.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
@@ -14,6 +13,7 @@ import kr.s10th24b.app.mylearningmate.R
 import kr.s10th24b.app.mylearningmate.adapters.LMRecyclerViewAdapter
 import kr.s10th24b.app.mylearningmate.databinding.FragmentLearningMateBinding
 import kr.s10th24b.app.mylearningmate.model.Task
+import kr.s10th24b.app.mylearningmate.utilities.DevTool.logD
 import kr.s10th24b.app.mylearningmate.viewmodel.LearningMateViewModel
 import splitties.toast.toast
 
@@ -32,7 +32,7 @@ class LearningMateFragment : RxFragment(), AddTaskDialogFragment.AddTaskDialogLi
     }
 
     override fun onDestroyView() {
-//        Log.d("KHJ","onDestroyView LearningMateFragment")
+//        logD("onDestroyView LearningMateFragment")
         super.onDestroyView()
     }
 
@@ -48,7 +48,7 @@ class LearningMateFragment : RxFragment(), AddTaskDialogFragment.AddTaskDialogLi
             lmRecyclerView.adapter = adapter
         }
         viewModel.taskList.observe(viewLifecycleOwner) {
-            Log.d("KHJ", "taskList.observe, task: $it")
+            logD( "taskList.observe, task: $it")
             adapter.submitList(it)
         }
         binding.floatingActionButton.setOnClickListener {
@@ -107,7 +107,7 @@ class LearningMateFragment : RxFragment(), AddTaskDialogFragment.AddTaskDialogLi
     }
 
     override fun onDialogNegativeClick(dialog: DialogFragment) {
-        Log.d("KHJ", "onDialogNegativeClick in Fragment")
+        logD( "onDialogNegativeClick in Fragment")
     }
 
     override fun onContextItemSelected(item: MenuItem): Boolean {

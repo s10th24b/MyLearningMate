@@ -1,6 +1,5 @@
 package kr.s10th24b.app.mylearningmate.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.android.play.core.internal.t
@@ -19,6 +18,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import kr.s10th24b.app.mylearningmate.model.DataRepository
 import kr.s10th24b.app.mylearningmate.model.Task
 import kr.s10th24b.app.mylearningmate.model.User
+import kr.s10th24b.app.mylearningmate.utilities.DevTool.logD
 import splitties.toast.toast
 import javax.inject.Inject
 import kotlin.random.Random
@@ -41,15 +41,15 @@ class LearningMateViewModel @Inject internal constructor(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeWith(object : CompletableObserver {
                 override fun onSubscribe(d: Disposable?) {
-                    Log.d("KHJ", "insertTask() onSubscribe $d")
+                    logD( "insertTask() onSubscribe $d")
                 }
 
                 override fun onComplete() {
-                    Log.d("KHJ", "insertTask() onComplete ${task.id}")
+                    logD( "insertTask() onComplete ${task.id}")
                 }
 
                 override fun onError(e: Throwable?) {
-                    Log.d("KHJ", "insertTask() onError $e")
+                    logD( "insertTask() onError $e")
                 }
             })
     }
@@ -63,7 +63,7 @@ class LearningMateViewModel @Inject internal constructor(
                 }
 
                 override fun onComplete() {
-                    Log.d("KHJ","deleteTask() onComplete")
+                    logD("deleteTask() onComplete")
 
                 }
 
@@ -82,7 +82,7 @@ class LearningMateViewModel @Inject internal constructor(
                 }
 
                 override fun onComplete() {
-                    Log.d("KHJ","deleteTaskById() onComplete")
+                    logD("deleteTaskById() onComplete")
                 }
 
                 override fun onError(e: Throwable?) {
@@ -97,11 +97,11 @@ class LearningMateViewModel @Inject internal constructor(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeWith(object : CompletableObserver {
                 override fun onSubscribe(d: Disposable?) {
-                    Log.d("KHJ","updateTask() onSubscribe")
+                    logD("updateTask() onSubscribe")
                 }
 
                 override fun onComplete() {
-                    Log.d("KHJ","updateTask() onComplete")
+                    logD("updateTask() onComplete")
                 }
 
                 override fun onError(e: Throwable?) {
@@ -117,22 +117,22 @@ class LearningMateViewModel @Inject internal constructor(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeWith(object : Observer<List<Task>> {
                 override fun onSubscribe(d: Disposable?) {
-                    Log.d("KHJ", "getAllTask() onSubscribe $d")
+                    logD( "getAllTask() onSubscribe $d")
                 }
 
                 override fun onNext(t: List<Task>?) {
                     t?.let {
                         taskList.value = it.toList()
                     }
-                    Log.d("KHJ", "getAllTask() onNext $t")
+                    logD( "getAllTask() onNext $t")
                 }
 
                 override fun onError(e: Throwable?) {
-                    Log.d("KHJ", "getAllTask() onError $e")
+                    logD( "getAllTask() onError $e")
                 }
 
                 override fun onComplete() {
-                    Log.d("KHJ", "getAllTask() onComplete")
+                    logD( "getAllTask() onComplete")
                 }
             })
     }
