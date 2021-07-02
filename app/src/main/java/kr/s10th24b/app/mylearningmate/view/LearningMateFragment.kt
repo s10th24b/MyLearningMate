@@ -68,7 +68,7 @@ class LearningMateFragment : RxFragment(), AddTaskDialogFragment.AddTaskDialogLi
         return binding.root
     }
 
-    fun showAddTaskDialog(
+    private fun showAddTaskDialog(
         mode: String = "추가",
         subject: String = "",
         probCount: Int = 1,
@@ -86,7 +86,7 @@ class LearningMateFragment : RxFragment(), AddTaskDialogFragment.AddTaskDialogLi
         dialog.show(childFragmentManager, "AddTaskDialogFragment")
     }
 
-    fun showAddTaskDialog(mode: String = "수정", task: Task) {
+    private fun showAddTaskDialog(mode: String = "수정", task: Task) {
         val dialog = AddTaskDialogFragment(mode, task)
         dialog.show(childFragmentManager, "AddTaskDialogFragment")
     }
